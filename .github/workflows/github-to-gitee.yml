@@ -12,7 +12,7 @@ jobs:
       - name: Mirror multiple repos
         uses: Yikun/hub-mirror-action@master
         with:
-          src: github
+          src: github/oceanfrost
           dst: gitee/RimSort
           dst_key: ${{ secrets.SSH_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
