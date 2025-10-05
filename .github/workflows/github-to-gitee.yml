@@ -9,20 +9,26 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - name: Mirror multiple repos
+      - name: Mirror RimSort Repos
         uses: Yikun/hub-mirror-action@master
         with:
-          src: github/oceanfrost
+          src: github/RimSort
           dst: gitee/RimSort
           dst_key: ${{ secrets.SSH_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
-          static_list: |
-            RimSort/RimSort
-            RimSort/Steam-Workshop-Database
-            RimSort/Community-Rules-Database
-            emipa606/UseThisInstead
-            emipa606/NoVersionWarning
+          static_list: "RimSort,Steam-Workshop-Database,Community-Rules-Database"
           force_update: true
-          clone_style: "ssh"
+          lfs: true
+          debug: true
+
+      - name: Mirror emipa606 Repos
+        uses: Yikun/hub-mirror-action@master
+        with:
+          src: github/emipa606
+          dst: gitee/RimSort
+          dst_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          dst_token: ${{ secrets.GITEE_TOKEN }}
+          static_list: "UseThisInstead,NoVersionWarning"
+          force_update: true
           lfs: true
           debug: true
