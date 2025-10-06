@@ -20,6 +20,7 @@ jobs:
           force_update: true
           lfs: true
           debug: true
+          cache_path: /github/workspace/hub-mirror-cache
 
       - name: Mirror emipa606 Repos
         uses: Yikun/hub-mirror-action@master
@@ -32,3 +33,4 @@ jobs:
           force_update: true
           lfs: true
           debug: true
+          cache_path: /github/workspace/hub-mirror-cache
