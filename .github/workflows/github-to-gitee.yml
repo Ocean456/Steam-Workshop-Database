@@ -6,9 +6,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  mirror:
+  mirror-rimsort:
     runs-on: ubuntu-latest
     steps:
+      - name: Cache cloned repos
+        uses: actions/cache@v4
+        with:
+          path: hub-mirror-cache-rimsort
+          key: ${{ runner.os }}-hub-mirror-rimsort-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-hub-mirror-rimsort-
+            
       - name: Mirror RimSort Repos
         uses: Yikun/hub-mirror-action@master
         with:
@@ -20,7 +28,18 @@ jobs:
           force_update: true
           lfs: true
           debug: true
-          cache_path: /github/workspace/hub-mirror-cache
+          cache_path: hub-mirror-cache-rimsort
+
+  mirror-emipa606:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache cloned repos
+        uses: actions/cache@v4
+        with:
+          path: hub-mirror-cache-emipa606
+          key: ${{ runner.os }}-hub-mirror-emipa606-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-hub-mirror-emipa606-
 
       - name: Mirror emipa606 Repos
         uses: Yikun/hub-mirror-action@master
@@ -33,4 +52,4 @@ jobs:
           force_update: true
           lfs: true
           debug: true
-          cache_path: /github/workspace/hub-mirror-cache
+          cache_path: hub-mirror-cache-emipa606
