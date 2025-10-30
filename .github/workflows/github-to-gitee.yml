@@ -13,10 +13,11 @@ jobs:
         uses: actions/cache@v4
         with:
           path: hub-mirror-cache-rimsort
-          key: ${{ runner.os }}-hub-mirror-rimsort-${{ github.run_id }}
+          key: ${{ runner.os }}-hub-mirror-rimsort-v1-${{ hashFiles('.github/workflows/mirror-to-gitee.yml') }}
           restore-keys: |
+            ${{ runner.os }}-hub-mirror-rimsort-v1-
             ${{ runner.os }}-hub-mirror-rimsort-
-            
+
       - name: Mirror RimSort Repos
         uses: Yikun/hub-mirror-action@master
         with:
@@ -37,8 +38,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: hub-mirror-cache-emipa606
-          key: ${{ runner.os }}-hub-mirror-emipa606-${{ github.run_id }}
+          key: ${{ runner.os }}-hub-mirror-emipa606-v1-${{ hashFiles('.github/workflows/mirror-to-gitee.yml') }}
           restore-keys: |
+            ${{ runner.os }}-hub-mirror-emipa606-v1-
             ${{ runner.os }}-hub-mirror-emipa606-
 
       - name: Mirror emipa606 Repos
